@@ -64,7 +64,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="sub-total">1,278</span></h5>
                         <h5>$0</h5>
                         <h5>$1,278</h5>
                      </div>
@@ -81,73 +81,82 @@
 
    <script>
       // phone price area
+      let amount = document.getElementById('amount').innerText;
+         let amountNumber = parseFloat(amount);
+      
       // plus btn event handler
       let plusBtn = document.getElementById('plus');
       plusBtn.addEventListener('click', function(){
-         let plusValue = document.getElementById('plusValue').value;
-         let plusValueNumber = parseFloat(plusValue);
-         let plusTotal = plusValueNumber + 1;
-         document.getElementById('plusValue').value = plusTotal;
 
-         // let amount = document.getElementById('amount').innerText;
-         // let amountNumber = parseFloat(amount);
-         let amountTotal = 1219 * plusTotal;
-         document.getElementById('amount').innerText = amountTotal;
+         plusAmount('plusValue', 'amount' ,amountNumber)
 
-       
       })
 
-     
+   
       // minus btn event handler
       let minusBtn = document.getElementById('minus');
       minusBtn.addEventListener('click', function(){
-         let plusValue = document.getElementById('plusValue').value;
-         let plusValueNumber = parseFloat(plusValue);
-         let minusTotal = (plusValueNumber - 1) ;
-         if(minusTotal < 1){
-            minusTotal = 1;
-         }
-         document.getElementById('plusValue').value = minusTotal;
-
-
-         let TotalAmount = 1219 * minusTotal;
-         document.getElementById('amount').innerText = TotalAmount;
+         
+         minusAmount('plusValue', 'amount', amountNumber)
          
       })
 
-
+      
 
 
        // case price area
+       let casePrice = document.getElementById('case-price').innerText;
+       let casePriceNumber = parseFloat(casePrice);
+
+
       //  plus btn handler
        let casePlus = document.getElementById('case-plus');
       casePlus.addEventListener('click',function(){
-         let caseValue = document.getElementById('case-value').value;
-         let caseValueNumber = parseFloat(caseValue);
-         let caseValueTotal = caseValueNumber + 1;
-         document.getElementById('case-value').value = caseValueTotal;
-
-         let caseAmount = 59 * caseValueTotal;
-         document.getElementById('case-price').innerText = caseAmount;
+         
+         plusAmount('case-value', 'case-price', casePriceNumber)
       })
+
+      // plus function area
+      function plusAmount(id, newId, number){
+         let plusValue = document.getElementById(id).value;
+         let plusValueNumber = parseFloat(plusValue);
+         let plusTotal = plusValueNumber + 1;
+         document.getElementById(id).value = plusTotal;
+
+         
+         let amountTotal = plusTotal *  number;
+         document.getElementById(newId).innerText = amountTotal;
+      }
 
       // minus btn handler
       let caseMinus = document.getElementById('case-minus');
       caseMinus.addEventListener('click', function(){
-         let caseValue = document.getElementById('case-value').value;
+
+         minusAmount('case-value', 'case-price', casePriceNumber,)
+      })
+
+      // minus function area
+
+
+      function minusAmount(id, newId, number){
+         let caseValue = document.getElementById(id).value;
          let caseValueNumber = parseFloat(caseValue);
          let caseMinusTotal = caseValueNumber - 1;
          if(caseMinusTotal < 1){
             caseMinusTotal = 1;
          }
-         document.getElementById('case-value').value = caseMinusTotal;
+         document.getElementById(id).value = caseMinusTotal;
 
-         let caseTotal = 59 * caseMinusTotal;
+         let caseTotal = number * caseMinusTotal;
 
 
-         document.getElementById('case-price').innerText = caseTotal;
-      })
+         document.getElementById(newId).innerText = caseTotal;
+      }
+      // total area 
 
+      let subTotal = document.getElementById('sub-total').innerText;
+      let subtotalAmount = parseFloat(subTotal);
+      
       
       
    </script>
