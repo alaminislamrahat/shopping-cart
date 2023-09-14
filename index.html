@@ -116,11 +116,11 @@
          const totalPrice = phoneCount * 1219 + caseCount * 59;
          document.getElementById('total-price').innerText = '$' + totalPrice;
 
-         const tax = (totalPrice * 0.1).toFixed(0);
+         const taxBefore = (totalPrice * 0.1).toFixed(0);
+         const tax = parseInt(taxBefore);
          document.getElementById('tax-amount').innerText = '$' + tax;
 
          const grandTotal = totalPrice + tax;
-         console.log(grandTotal)
          document.getElementById('grand-total').innerText = '$' + grandTotal;
       }
    </script>
